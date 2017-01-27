@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         nasko.setOnClickListener(new View.OnClickListener() {
             public void onClick(View starbutton){
                 TextView newtext = (TextView)findViewById(R.id.text);
-                newtext.setText("Atanas was her");
+                newtext.setText("Atanas was here");
             }
 
         });
