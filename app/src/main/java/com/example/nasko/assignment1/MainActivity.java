@@ -27,18 +27,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
-                TextView newtext = (TextView)findViewById(R.id.text);
-                newtext.setText("Atanas was not here");
+
+                //method to change text in runtime
+                    // TextView newtext = (TextView)findViewById(R.id.edit_message);
+                    // newtext.setText("Atanas was not here");
             }
         });
+    }
 
-        nasko.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View starbutton){
-                TextView newtext = (TextView)findViewById(R.id.text);
-                newtext.setText("Atanas was here");
-            }
-
-        });
+    public void sendMessage(View view) {
+        // Do something in response to button
     }
 
     @Override
