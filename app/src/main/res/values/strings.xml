@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Thanks Obama</string>
-    <string name="action_settings">Settings</string>
-    <string name="edit_message">Enter a message</string>
-    <string name="button_send">Send</string>
-    <string name="title_activity_display_message">DisplayMessageActivity</string>
+    <string name="app_name">Atanas\' Tip Calculator</string>
+    <string name="action_settings">Calculate Tip</string>
+    <string name="edit_message">Amount</string>
+    <string name="button_send">Calculate</string>
+    <string name="title_activity_display_message">Your tip: Calculated</string>
 </resources>
