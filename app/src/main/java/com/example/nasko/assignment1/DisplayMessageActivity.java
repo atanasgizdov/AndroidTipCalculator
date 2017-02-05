@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class DisplayMessageActivity extends AppCompatActivity {
 
@@ -31,14 +32,6 @@ public class DisplayMessageActivity extends AppCompatActivity {
         ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
         layout.addView(textView);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
 }
