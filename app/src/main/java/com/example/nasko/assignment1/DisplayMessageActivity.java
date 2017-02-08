@@ -32,22 +32,26 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         // show values on page
 
-        TextView totalBill = (TextView)findViewById(R.id.totalBill);
-        totalBill.setText(String.valueOf(hashMap.get("totalBill")));
+        TextView totalBill = (TextView) findViewById(R.id.totalBill);
+        totalBill.setText("$" + String.valueOf(hashMap.get("totalBill")));
 
-        TextView totalTip = (TextView)findViewById(R.id.totalTip);
-        totalTip.setText(String.valueOf(hashMap.get("totalTip")));
+        TextView totalTip = (TextView) findViewById(R.id.totalTip);
+        totalTip.setText("$" + String.valueOf(hashMap.get("totalTip")));
 
-        TextView totalPerPerson = (TextView)findViewById(R.id.totalPerPerson);
-        totalPerPerson.setText(String.valueOf(hashMap.get("totalPerPerson")));
+        TextView totalPerPerson = (TextView) findViewById(R.id.totalPerPerson);
+        totalPerPerson.setText("$" + String.valueOf(hashMap.get("totalPerPerson")));
 
-        TextView tipPerPerson = (TextView)findViewById(R.id.tipPerPerson);
-        tipPerPerson.setText(String.valueOf(hashMap.get("tipPerPerson")));
+        TextView tipPerPerson = (TextView) findViewById(R.id.tipPerPerson);
+        tipPerPerson.setText("$" + String.valueOf(hashMap.get("tipPerPerson")));
 
-        TextView grantotalpp = (TextView)findViewById(R.id.grantotalpp);
-        grantotalpp.setText(String.valueOf(hashMap.get("grantotalpp")));
+        TextView grantotalpp = (TextView) findViewById(R.id.grantotalpp);
+        grantotalpp.setText("$" + String.valueOf(hashMap.get("grantotalpp")));
 
-
+        // reset to main activity so user can do another calculation
+    }
+    public void reset (View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     // add menu options

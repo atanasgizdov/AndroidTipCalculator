@@ -3,5 +3,6 @@
     <string name="action_settings">Calculate Tip</string>
     <string name="edit_message">Amount</string>
     <string name="button_send">Calculate</string>
+    <string name="reset">Reset</string>
     <string name="title_activity_display_message">Your tip: Calculated</string>
 </resources>
