@@ -12,11 +12,21 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "test";
+    final HashMap<String, Double> map = new HashMap<String, Double>();
+    public  static double totalBill = 0;
+    public  static double totalTip = 0;
+    public  static double totalPerPerson = 0;
+    public  static double tipPerPerson = 0;
+    public static double grandtotalpp = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,49 +35,102 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        FloatingActionButton nasko = (FloatingActionButton) findViewById(R.id.nasko);
+        // autoset Tip % to 15%
+        EditText editText = (EditText)findViewById(R.id.tip);
+        editText.setText("15", TextView.BufferType.EDITABLE);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+        // create an event listener on button press and a snackbar popup comes up
 
-                //method to change text in runtime
-                    // TextView newtext = (TextView)findViewById(R.id.edit_message);
-                    // newtext.setText("Atanas was not here");
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        FloatingActionButton nasko = (FloatingActionButton) findViewById(R.id.nasko);
+//
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//
+//                //method to change text in runtime
+//                    // TextView newtext = (TextView)findViewById(R.id.edit_message);
+//                    // newtext.setText("Atanas was not here");
+//            }
+//        });
     }
 
-    public void sendMessage(View view) {
+    //send entered message to the next activity
+
+   /* public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         EditText editText = (EditText) findViewById(R.id.edit_message);
         String message = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, message);
         startActivity(intent);
-    }
+    }*/
+    
+        // Grab values from UI and Calculate tip, then start new activity
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        public void calculateTip (View view) {
+            // start intent
+            Intent intent = new Intent(this, DisplayMessageActivity.class);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+            // Grab check amount and parse to int
+            EditText editText1 = (EditText) findViewById(R.id.check_amount);
+            int checkamount = Integer.parseInt(editText1.getText().toString());
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+            // Grab # of people and parse to int
+            EditText editText2 = (EditText) findViewById(R.id.number_of_people);
+            int numberofPeople = Integer.parseInt(editText2.getText().toString());
+
+            // Grab tip and parse to int
+            EditText editText3 = (EditText) findViewById(R.id.tip);
+            int tipPercentage = Integer.parseInt(editText3.getText().toString());
+
+            // calculate everything
+
+            totalBill = checkamount;
+            totalTip = checkamount * ((double)tipPercentage/100);
+            totalPerPerson = checkamount / numberofPeople;
+            tipPerPerson = totalTip / numberofPeople;
+            grandtotalpp = totalPerPerson + tipPerPerson;
+
+            // map values to map
+
+            map.put("totalBill", totalBill);
+            map.put("totalTip", totalTip);
+            map.put("totalPerPerson", totalPerPerson);
+            map.put("tipPerPerson", tipPerPerson);
+            map.put("grantotalpp", grandtotalpp);
+
+            // start intent and send values in map
+
+            intent.putExtra("hashMap", map);
+            startActivity(intent);
+        }
+
+
+
+        // add menu options
+
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu){
+            // Inflate the menu; this adds items to the action bar if it is present.
+            getMenuInflater().inflate(R.menu.menu_main, menu);
             return true;
         }
 
-        return super.onOptionsItemSelected(item);
+        @Override
+        public boolean onOptionsItemSelected (MenuItem item){
+            // Handle action bar item clicks here. The action bar will
+            // automatically handle clicks on the Home/Up button, so long
+            // as you specify a parent activity in AndroidManifest.xml.
+            int id = item.getItemId();
+
+            //noinspection SimplifiableIfStatement
+            if (id == R.id.action_settings) {
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
     }
-}
+

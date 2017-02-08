@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.util.HashMap;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -23,15 +26,52 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // grab hashmap from previous activity
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(message);
+        HashMap<String, Double> hashMap = (HashMap<String, Double>) intent.getSerializableExtra("hashMap");
 
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
-        layout.addView(textView);
+        // show values on page
 
+        TextView totalBill = (TextView)findViewById(R.id.totalBill);
+        totalBill.setText(String.valueOf(hashMap.get("totalBill")));
+
+        TextView totalTip = (TextView)findViewById(R.id.totalTip);
+        totalTip.setText(String.valueOf(hashMap.get("totalTip")));
+
+        TextView totalPerPerson = (TextView)findViewById(R.id.totalPerPerson);
+        totalPerPerson.setText(String.valueOf(hashMap.get("totalPerPerson")));
+
+        TextView tipPerPerson = (TextView)findViewById(R.id.tipPerPerson);
+        tipPerPerson.setText(String.valueOf(hashMap.get("tipPerPerson")));
+
+        TextView grantotalpp = (TextView)findViewById(R.id.grantotalpp);
+        grantotalpp.setText(String.valueOf(hashMap.get("grantotalpp")));
+
+
+    }
+
+    // add menu options
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }
