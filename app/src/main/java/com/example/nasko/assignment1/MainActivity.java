@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
+import static java.lang.Math.round;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     public  static double totalPerPerson = 0;
     public  static double tipPerPerson = 0;
     public static double grandtotalpp = 0;
+    int numberofPeople;
 
 
     @Override
@@ -39,33 +41,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText)findViewById(R.id.tip);
         editText.setText("15", TextView.BufferType.EDITABLE);
 
-        // create an event listener on button press and a snackbar popup comes up
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        FloatingActionButton nasko = (FloatingActionButton) findViewById(R.id.nasko);
-//
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//
-//                //method to change text in runtime
-//                    // TextView newtext = (TextView)findViewById(R.id.edit_message);
-//                    // newtext.setText("Atanas was not here");
-//            }
-//        });
     }
-
-    //send entered message to the next activity
-
-   /* public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.edit_message);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
-    }*/
     
         // Grab values from UI and Calculate tip, then start new activity
 
@@ -78,8 +54,11 @@ public class MainActivity extends AppCompatActivity {
             int checkamount = Integer.parseInt(editText1.getText().toString());
 
             // Grab # of people and parse to int
-            EditText editText2 = (EditText) findViewById(R.id.number_of_people);
-            int numberofPeople = Integer.parseInt(editText2.getText().toString());
+
+                EditText editText2 = (EditText) findViewById(R.id.number_of_people);
+                int numberofPeople = Integer.parseInt(editText2.getText().toString());
+
+
 
             // Grab tip and parse to int
             EditText editText3 = (EditText) findViewById(R.id.tip);
@@ -87,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
             // calculate everything
 
-            totalBill = checkamount;
+            totalBill = round(checkamount);
             totalTip = checkamount * ((double)tipPercentage/100);
             totalPerPerson = checkamount / numberofPeople;
             tipPerPerson = totalTip / numberofPeople;
