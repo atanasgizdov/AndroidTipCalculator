@@ -22,4 +22,77 @@
 
         </LinearLayout>
 
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:text="Total Bill"
+                android:textSize="20dp"
+                android:padding="3dip"
+                android:layout_weight=".5"/>
+            <TextView android:id="@+id/totalBill"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Total Tip"
+                android:textSize="20dp"
+                android:padding="3dip"
+                android:layout_weight=".5"/>
+            <TextView android:id="@+id/totalTip"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:text="Total Per Person"
+                android:textSize="20dp"
+                android:padding="3dip"
+                android:layout_weight=".5"/>
+            <TextView android:id="@+id/totalPerPerson"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Tip Per Person"
+                android:textSize="20dp"
+                android:padding="3dip"
+                android:layout_weight=".5"/>
+            <TextView android:id="@+id/tipPerPerson"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                />
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:text="Grand Total Per Person"
+                android:textSize="20dp"
+                android:padding="3dip"
+                android:layout_weight=".5"/>
+            <TextView android:id="@+id/grantotalpp"
+                android:layout_weight=".5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>

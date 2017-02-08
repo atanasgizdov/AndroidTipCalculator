@@ -12,11 +12,21 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final static String EXTRA_MESSAGE = "test";
+    final HashMap<String, Double> map = new HashMap<String, Double>();
+    public  static double totalBill = 0;
+    public  static double totalTip = 0;
+    public  static double totalPerPerson = 0;
+    public  static double tipPerPerson = 0;
+    public static double grandtotalpp = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        // autoset Tip % to 15%
+        EditText editText = (EditText)findViewById(R.id.tip);
+        editText.setText("15", TextView.BufferType.EDITABLE);
 
         // create an event listener on button press and a snackbar popup comes up
 
@@ -55,9 +69,45 @@ public class MainActivity extends AppCompatActivity {
     
         // Grab values from UI and Calculate tip, then start new activity
 
-        public void sendMessage(View view) {
-            //// TODO: 2/5/2017  
+        public void calculateTip (View view) {
+            // start intent
+            Intent intent = new Intent(this, DisplayMessageActivity.class);
+
+            // Grab check amount and parse to int
+            EditText editText1 = (EditText) findViewById(R.id.check_amount);
+            int checkamount = Integer.parseInt(editText1.getText().toString());
+
+            // Grab # of people and parse to int
+            EditText editText2 = (EditText) findViewById(R.id.number_of_people);
+            int numberofPeople = Integer.parseInt(editText2.getText().toString());
+
+            // Grab tip and parse to int
+            EditText editText3 = (EditText) findViewById(R.id.tip);
+            int tipPercentage = Integer.parseInt(editText3.getText().toString());
+
+            // calculate everything
+
+            totalBill = checkamount;
+            totalTip = checkamount * ((double)tipPercentage/100);
+            totalPerPerson = checkamount / numberofPeople;
+            tipPerPerson = totalTip / numberofPeople;
+            grandtotalpp = totalPerPerson + tipPerPerson;
+
+            // map values to map
+
+            map.put("totalBill", totalBill);
+            map.put("totalTip", totalTip);
+            map.put("totalPerPerson", totalPerPerson);
+            map.put("tipPerPerson", tipPerPerson);
+            map.put("grantotalpp", grandtotalpp);
+
+            // start intent and send values in map
+
+            intent.putExtra("hashMap", map);
+            startActivity(intent);
         }
+
+
 
         // add menu options
 

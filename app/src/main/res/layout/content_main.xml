@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/edit_message"
+                android:inputType="number"
                 />
         </TableRow>
 
@@ -43,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/edit_message"
+                android:inputType="number"
                 />
         </TableRow>
 
@@ -58,6 +60,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:hint="@string/edit_message"
+                android:inputType="number"
                  />
         </TableRow>
         <TableRow>

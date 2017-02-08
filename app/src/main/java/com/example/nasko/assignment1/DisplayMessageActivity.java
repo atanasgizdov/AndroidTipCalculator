@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.util.HashMap;
+
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -23,14 +26,27 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // grab hashmap from previous activity
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(message);
+        HashMap<String, Double> hashMap = (HashMap<String, Double>) intent.getSerializableExtra("hashMap");
 
-        ViewGroup layout = (ViewGroup) findViewById(R.id.activity_display_message);
-        layout.addView(textView);
+        // show values on page
+
+        TextView totalBill = (TextView)findViewById(R.id.totalBill);
+        totalBill.setText(String.valueOf(hashMap.get("totalBill")));
+
+        TextView totalTip = (TextView)findViewById(R.id.totalTip);
+        totalTip.setText(String.valueOf(hashMap.get("totalTip")));
+
+        TextView totalPerPerson = (TextView)findViewById(R.id.totalPerPerson);
+        totalPerPerson.setText(String.valueOf(hashMap.get("totalPerPerson")));
+
+        TextView tipPerPerson = (TextView)findViewById(R.id.tipPerPerson);
+        tipPerPerson.setText(String.valueOf(hashMap.get("tipPerPerson")));
+
+        TextView grantotalpp = (TextView)findViewById(R.id.grantotalpp);
+        grantotalpp.setText(String.valueOf(hashMap.get("grantotalpp")));
+
 
     }
 
