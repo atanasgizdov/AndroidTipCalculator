@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -30,24 +31,26 @@ public class DisplayMessageActivity extends AppCompatActivity {
         Intent intent = getIntent();
         HashMap<String, Double> hashMap = (HashMap<String, Double>) intent.getSerializableExtra("hashMap");
 
-        // show values on page
+        // show values on page in two decimal format
+
+        DecimalFormat f = new DecimalFormat("##.00");
 
         TextView totalBill = (TextView) findViewById(R.id.totalBill);
-        totalBill.setText("$" + String.valueOf(hashMap.get("totalBill")));
+        totalBill.setText("$" + String.valueOf(f.format(hashMap.get("totalBill"))));
 
         TextView totalTip = (TextView) findViewById(R.id.totalTip);
-        totalTip.setText("$" + String.valueOf(hashMap.get("totalTip")));
+        totalTip.setText("$" + String.valueOf(f.format(hashMap.get("totalTip"))));
 
         TextView totalPerPerson = (TextView) findViewById(R.id.totalPerPerson);
-        totalPerPerson.setText("$" + String.valueOf(hashMap.get("totalPerPerson")));
+        totalPerPerson.setText("$" + String.valueOf(f.format(hashMap.get("totalPerPerson"))));
 
         TextView tipPerPerson = (TextView) findViewById(R.id.tipPerPerson);
-        tipPerPerson.setText("$" + String.valueOf(hashMap.get("tipPerPerson")));
+        tipPerPerson.setText("$" + String.valueOf(f.format(hashMap.get("tipPerPerson"))));
 
         TextView grantotalpp = (TextView) findViewById(R.id.grantotalpp);
-        grantotalpp.setText("$" + String.valueOf(hashMap.get("grantotalpp")));
+        grantotalpp.setText("$" + String.valueOf(f.format(hashMap.get("grantotalpp"))));
 
-        // reset to main activity so user can do another calculation
+        // button to reset to main activity so user can do another calculation
     }
     public void reset (View view) {
         Intent intent = new Intent(this, MainActivity.class);
