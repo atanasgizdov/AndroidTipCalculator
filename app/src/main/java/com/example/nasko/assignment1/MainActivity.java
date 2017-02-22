@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -28,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
     public  static double totalPerPerson = 0;
     public  static double tipPerPerson = 0;
     public static double grandtotalpp = 0;
-    int numberofPeople;
+    public static double checkamount = 0;
+    public static int numberofPeople = 0;
+    public static double tipPercentage = 0;
+    boolean validvalues = true;
 
 
     @Override
@@ -41,51 +45,63 @@ public class MainActivity extends AppCompatActivity {
         // autoset Tip % to 15%
         EditText editText = (EditText)findViewById(R.id.tip);
         editText.setText("15", TextView.BufferType.EDITABLE);
-
     }
-    
-        // Grab values from UI and Calculate tip, then start new activity
+
+            // calcuate everything and start intent method
 
         public void calculateTip (View view) {
-            // start intent
-            Intent intent = new Intent(this, DisplayMessageActivity.class);
 
-            // Grab check amount and parse to int
+            // Grab check, number of people and tip % amount and parse
+        try {
+            validvalues = true; // reset to true in case an exception is caught first time around
             EditText editText1 = (EditText) findViewById(R.id.check_amount);
-            int checkamount = Integer.parseInt(editText1.getText().toString());
-
-            // Grab # of people and parse to int
-
-                EditText editText2 = (EditText) findViewById(R.id.number_of_people);
-                int numberofPeople = Integer.parseInt(editText2.getText().toString());
-
-
-
-            // Grab tip and parse to int
+            checkamount = Double.parseDouble(editText1.getText().toString());
+            EditText editText2 = (EditText) findViewById(R.id.number_of_people);
+            numberofPeople = Integer.parseInt(editText2.getText().toString());
             EditText editText3 = (EditText) findViewById(R.id.tip);
-            int tipPercentage = Integer.parseInt(editText3.getText().toString());
-
-            // calculate everything
-
-            totalBill = round(checkamount);
-            totalTip = checkamount * ((double)tipPercentage/100);
-            totalPerPerson = checkamount / numberofPeople;
-            tipPerPerson = totalTip / numberofPeople;
-            grandtotalpp = totalPerPerson + tipPerPerson;
-
-            // map values to map
-
-            map.put("totalBill", totalBill);
-            map.put("totalTip", totalTip);
-            map.put("totalPerPerson", totalPerPerson);
-            map.put("tipPerPerson", tipPerPerson);
-            map.put("grantotalpp", grandtotalpp);
-
-            // start intent and send values in map
-
-            intent.putExtra("hashMap", map);
-            startActivity(intent);
+            tipPercentage = Double.parseDouble(editText3.getText().toString());
         }
+        catch (RuntimeException e){
+            validvalues = false;
+        }
+
+                Intent intent = new Intent(this, DisplayMessageActivity.class);
+
+                try {
+
+                    totalBill = round(checkamount);
+                    totalTip = checkamount * ((double) tipPercentage / 100);
+                    totalPerPerson = checkamount / numberofPeople;
+                    //totalPerPerson = Math.round(totalPerPerson * 100) / 100;
+                    tipPerPerson = totalTip/numberofPeople;
+                    //tipPerPerson = Math.round(tipPerPerson * 100) / 100;
+                    grandtotalpp = totalPerPerson + tipPerPerson;
+                    if (totalPerPerson == Double.POSITIVE_INFINITY || tipPerPerson == Double.POSITIVE_INFINITY || grandtotalpp == Double.POSITIVE_INFINITY){
+                        throw new IllegalArgumentException();
+                    }
+                }
+                catch (IllegalArgumentException e){
+                    validvalues = false;
+                }
+
+            if (validvalues) {
+                // map values to map
+
+                map.put("totalBill", totalBill);
+                map.put("totalTip", totalTip);
+                map.put("totalPerPerson", totalPerPerson);
+                map.put("tipPerPerson", tipPerPerson);
+                map.put("grantotalpp", grandtotalpp);
+
+                // start intent and send values in map
+
+                intent.putExtra("hashMap", map);
+                startActivity(intent);
+            }
+            else
+                Toast.makeText(this, "Opps - you may have forgotten to enter a value or entered a zero somewhere", Toast.LENGTH_SHORT).show();
+            }
+
 
     // open phone app and call Bentley
 
