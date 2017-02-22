@@ -12,10 +12,13 @@
     tools:context="com.example.nasko.assignment1.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:stretchColumns="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <TableRow>
             <TextView
                 android:text="Check amount"
@@ -50,6 +53,8 @@
                 />
         </TableRow>
 
+
+
         <TableRow>
             <TextView
                 android:text="Tip %"
@@ -78,6 +83,11 @@
                 android:layout_column="2"
                 />
         </TableRow>
+
+       
+
+
     </TableLayout>
+
 
 </RelativeLayout>

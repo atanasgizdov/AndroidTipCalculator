@@ -1,6 +1,7 @@
 package com.example.nasko.assignment1;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -85,6 +86,19 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("hashMap", map);
             startActivity(intent);
         }
+
+    // open phone app and call Bentley
+
+        public void callPhone () {
+            try {
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:7818912000"));
+                startActivity(callIntent);
+            }
+            catch (SecurityException e) {
+
+            }
+    }
 
 
 
