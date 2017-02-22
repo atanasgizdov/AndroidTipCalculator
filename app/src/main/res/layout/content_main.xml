@@ -84,7 +84,28 @@
                 />
         </TableRow>
 
-       
+        <TableRow>
+            <Button
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Phone"
+                android:onClick="callPhone"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Bentley.com"
+                android:onClick="webLookUp"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Map"
+                android:onClick="bentleyMap"
+                />
+        </TableRow>
 
 
     </TableLayout>

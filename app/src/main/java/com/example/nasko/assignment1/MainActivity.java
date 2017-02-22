@@ -1,5 +1,6 @@
 package com.example.nasko.assignment1;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -112,8 +114,30 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(callIntent);
             }
             catch (SecurityException e) {
-
+                Toast.makeText(this, "Opps - you don't have permissions to do that", Toast.LENGTH_SHORT).show();
             }
+    }
+
+    public void bentleyMap () {
+        String uri = String.format(Locale.ENGLISH, "https://www.google.com/maps/place/Bentley+University/@42.3856989,-71.2238687,17z/data=!3m1!4b1!4m5!3m4!1s0x89e39d36c9ba1a47:0x861ff9c80e2690aa!8m2!3d42.3856989!4d-71.22168");
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+        try
+        {
+            startActivity(intent);
+        }
+        catch(ActivityNotFoundException e)
+        {
+            try
+            {
+                Intent unrestrictedIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                startActivity(unrestrictedIntent);
+            }
+            catch(ActivityNotFoundException innerEx)
+            {
+                Toast.makeText(this, "Please install a maps application", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 
