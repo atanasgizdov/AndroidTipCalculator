@@ -12,10 +12,13 @@
     tools:context="com.example.nasko.assignment1.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:stretchColumns="1">
+        android:stretchColumns="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
         <TableRow>
             <TextView
                 android:text="Check amount"
@@ -50,6 +53,8 @@
                 />
         </TableRow>
 
+
+
         <TableRow>
             <TextView
                 android:text="Tip %"
@@ -78,6 +83,32 @@
                 android:layout_column="2"
                 />
         </TableRow>
+
+        <TableRow>
+            <Button
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Phone"
+                android:onClick="callPhone"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:text="Bentley.com"
+                android:onClick="webLookUp"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Map"
+                android:onClick="bentleyMap"
+                />
+        </TableRow>
+
+
     </TableLayout>
+
 
 </RelativeLayout>
