@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
 
            }
 
-    // grab the result of the openWeb activityforresult
+    // grab the result of the openWeb activityforresult and show toast
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
@@ -149,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Did you have trouble accessig the web?", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Did you have trouble accessing the web?", Toast.LENGTH_SHORT).show();
             }
         }
     }
