@@ -78,6 +78,34 @@
                 android:layout_column="2"
                 />
         </TableRow>
+
+        <TableRow>
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:text="Phone"
+                android:onClick="callPhone"
+                android:layout_weight=".3"
+                />
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:text="Map"
+                android:onClick="showMap"
+                android:layout_weight=".3"
+                />
+
+            <Button
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:text="Web"
+                android:onClick="openWeb"
+                android:layout_weight=".3"/>
+
+        </TableRow>
+
+
     </TableLayout>
 
 </RelativeLayout>

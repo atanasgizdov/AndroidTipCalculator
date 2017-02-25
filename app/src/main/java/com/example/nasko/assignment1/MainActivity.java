@@ -1,6 +1,9 @@
 package com.example.nasko.assignment1;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +18,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import static android.provider.AlarmClock.EXTRA_MESSAGE;
@@ -102,7 +106,53 @@ public class MainActivity extends AppCompatActivity {
             }
 
 
+            // call phone
 
+        public void callPhone (View view) {
+
+            try {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:7818912000"));
+                startActivity(intent);
+            }
+            catch (SecurityException e) {
+                Toast.makeText(this, "Could not find an activity to place the call.", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
+        // open the map of bentley
+
+
+
+        public void showMap (View view) {
+            String uri = String.format(Locale.ENGLISH, "geo:0,0?q=175+Forest+St+Waltham+MA");
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+            startActivity(intent);
+        }
+
+    // open web with activity result request
+    public void openWeb (View view) {
+
+        Intent intent = new Intent(this, webviewActivity.class);
+        startActivityForResult(intent, 1);
+
+           }
+
+    // grab the result of the openWeb activityforresult and show toast
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+                String result=data.getStringExtra("result");
+                Toast.makeText(this, "Welcome back from browsing " +result, Toast.LENGTH_SHORT).show();
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Toast.makeText(this, "Did you have trouble accessing the web?", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
         // add menu options
 
