@@ -22,7 +22,6 @@
         <TableRow>
             <TextView
                 android:text="Total Bill"
-                android:textColor="#ff00ff"
                 android:textSize="20dip"
                 android:layout_weight=".7"
                 android:layout_width="0dp"
@@ -41,7 +40,6 @@
             <TextView
                 android:text="Total Tip"
                 android:textSize="20dp"
-                android:background="@android:color/holo_green_light"
                 android:padding="3dip"
                 android:layout_width="0dp"
                 android:layout_weight=".7"/>
@@ -97,7 +95,6 @@
                 android:textSize="20dp"
                 android:padding="3dip"
                 android:layout_width="0dp"
-                android:fontFamily="casual"
                 android:textStyle="bold"
                 android:layout_weight=".7"/>
 
